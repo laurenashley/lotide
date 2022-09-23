@@ -1,5 +1,5 @@
 // Load full Lodash build
-var _ = require('lodash');
+const _ = require('lodash');
 
 // Implement Functions
 const assertEqual = function(actual, expected) {
@@ -13,7 +13,7 @@ const assertEqual = function(actual, expected) {
 
 const head = function(array) {
   return array.length > 1 ? _.head(array) : Number(array);
-;}
+};
 
 //Test Code
 assertEqual(head([5,6,7]), 5);
