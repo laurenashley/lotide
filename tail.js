@@ -2,29 +2,30 @@
 const assertEqual = function(actual, expected) {
   const successMsg = `👍✅Assertion Passed: ${actual} === ${expected}`;
   const failMsg = `👎❌Assertion Failed: ${actual} === ${expected}`;
+  const isEmpty = (actual.length === 0 && expected.length === 0);
+  const sameLengths = actual.length === expected.length;
   let isMatch = (actual === expected);
 
-  // Check if inputs are arrays, compare values by their index
+  // Check if inputs are arrays
   if (Array.isArray(actual) && Array.isArray(expected)) {
-    // TO DO [] should yield []
-    // TO DO [1] should yield []
-
-    actual.forEach(e => {
-      console.log('10 ', actual.indexOf(e), e);
-      const expIndex = expected.indexOf(e);
-      isMatch = expected[expIndex] === e; // TO DO this needs to stop loop if false
-      console.log('18 ', expected[expIndex], e, isMatch);
-    });
+    if (sameLengths) {
+      // Compare each value by it's index
+      actual.forEach(e => {
+        const expIndex = expected.indexOf(e);
+        isMatch = (expected[expIndex] === e); // TO DO exit loop when false, will fix l.23
+      });
+    } else {
+      isMatch = false;
+    }
   }
 
-  const result = isMatch ? successMsg : failMsg;
+  const result = isMatch || isEmpty ? successMsg : failMsg;
 
   console.log(result);
 };
 
 const tail = function(array) {
   const result = array.length > 1 ? array.slice(1) : array[0];
-
   return result;
 };
 
@@ -32,9 +33,11 @@ const tail = function(array) {
 const stringArray = tail(['hello', 'my', 'name', 'is']),
   numArray = tail([5, 6, 9, 13]);
 
-assertEqual(stringArray, ['hello', 'my', 'name', 'is']); // TO DO incorrect pass
-assertEqual(numArray, [5, 6, 9, 13]); // TO DO incorrect pass
-
-assertEqual([], []); // TO DO this fails
-assertEqual(tail([5]), [5]);
+assertEqual(stringArray, ['hello', 'my', 'name', 'is']);
+assertEqual(numArray, [5, 6, 9, 13]);
+assertEqual(stringArray, ['my', 'name', 'is']);
+assertEqual(stringArray, ['my', 'names', 'is']); // TO DO this fails
+assertEqual(numArray, [6, 9, 13]);
+assertEqual([], []);
+assertEqual(tail([5]), [5]); // TO DO this fails
 assertEqual(tail([5, 6]), 6); // TO DO this fails
