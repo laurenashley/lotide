@@ -1,6 +1,3 @@
-// Load full Lodash build
-const _ = require('lodash');
-
 // Implement Functions
 const assertEqual = function(actual, expected) {
   const successMsg = `👍✅Assertion Passed: ${actual} === ${expected}`,
@@ -12,7 +9,7 @@ const assertEqual = function(actual, expected) {
 };
 
 const head = function(array) {
-  return array.length > 1 ? _.head(array) : Number(array);
+  return array.length > 1 ? array[0] : Number(array);
 };
 
 //Test Code
