@@ -9,6 +9,12 @@ const assertEqual = function(actual, expected) {
   // Check if inputs are arrays
   if (Array.isArray(actual) && Array.isArray(expected)) {
     if (sameLengths) {
+      // TO DO if different data types
+      // if length is only 1, convert value to array
+      const newA = Object.values(actual);
+      const newE = Object.values(expected);
+      console.log('13 ', typeof newA, typeof newB);
+
       // Compare each value by it's index
       actual.forEach(e => {
         const expIndex = expected.indexOf(e);
@@ -41,3 +47,4 @@ assertEqual(numArray, [6, 9, 13]);
 assertEqual([], []);
 assertEqual(tail([5]), [5]); // TO DO this fails
 assertEqual(tail([5, 6]), 6); // TO DO this fails
+assertEqual(tail(['is', 'blah']), 'blah'); // TO DO this fails
