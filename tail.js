@@ -9,22 +9,6 @@ const assertEqual = function(actual, expected) {
   // Check if inputs are arrays
   if (Array.isArray(actual) && Array.isArray(expected)) {
     if (sameLengths) {
-      // TO DO if different data types
-      // if length is only 1, convert value to string
-      // const newA = Object.values(actual);
-      // const newE = Object.values(expected);
-
-      // console.log('13 ', typeof newA, typeof newB);
-
-
-      console.log('20 ', actual[0], expected[0]);
-      if (actual.length === 1 || expected.length === 1) {
-        console.log('20 ', actual[0], expected[0]);
-        isMatch = (actual[0] === expected[0]);
-      } else {
-        // To Do move every loop here
-      }
-
       // Compare each value by it's index
       actual.every(e => {
         const expIndex = expected.indexOf(e);
@@ -37,6 +21,12 @@ const assertEqual = function(actual, expected) {
     } else {
       isMatch = false;
     }
+  }
+// TO DO comparing diff dataypes
+  console.log('26 ', typeof actual, typeof expected,);
+  if (actual.length === 1 || expected.length === 1) {
+    console.log('28 ', actual[0], expected[0]);
+    isMatch = (actual[0] === expected[0]);
   }
 
   const result = isMatch || isEmpty ? successMsg : failMsg;
@@ -53,10 +43,10 @@ const tail = function(array) {
 const stringArray = tail(['hello', 'my', 'name', 'is']),
   numArray = tail([5, 6, 9, 13]);
 
-assertEqual(stringArray, ['hello', 'my', 'name', 'is']);
-assertEqual(numArray, [5, 6, 9, 13]);
+assertEqual(stringArray, ['hello', 'my', 'name', 'is']); // should fail
+assertEqual(numArray, [5, 6, 9, 13]); // should fail
 assertEqual(stringArray, ['my', 'name', 'is']);
-assertEqual(stringArray, ['my', 'names', 'is']);
+assertEqual(stringArray, ['my', 'names', 'is']); // should fail
 assertEqual(numArray, [6, 9, 13]);
 assertEqual([], []);
 assertEqual(tail([5]), [5]); // TO DO this fails
