@@ -28,22 +28,24 @@ const eqArray = (first, second) => {
 };
 
 const without = (array, itemsToRemove) => {
-  let result = array;
+  let result = [];
 
-  console.log('New Test');
-  itemsToRemove.forEach(eToRemove => {
-    const itemIndex = result.findIndex(eFromResult => eFromResult === eToRemove);
-    // console.log('36 ', result.indexOf(eToRemove));
-    // const itemIndex = result.indexOf(eToRemove);
-    console.log('38 ', itemIndex, result.splice(itemIndex, 1));
-    // result = result.splice(itemIndex, 1);
+  // Check each item of array against itemsToRemove
+  array.forEach(e => {
+    const foundInRemove = itemsToRemove.find(element => element === e);
+    if (!foundInRemove) {
+      result.push(e);
+    }
   });
-  // console.log(result);
+
+  console.log(result);
 };
 
 // Test Code
 without([1, 2, 3], [1]); // => [2, 3]
 without(["1", "2", "3"], [1, 2, "3"]); // => ["1", "2"]
-without(["1", "2", "3", "4"], ["1", "2", "3"]); // => ["3"]
+without(["1", "2", "3", "4"], ["1", "2", "3"]); // => ["4"]
 
-// assertArraysEqual();
+const words = ["hello", "world", "lighthouse"];
+without(words, ["lighthouse"]);
+assertArraysEqual(words, ["hello", "world", "lighthouse"]);
