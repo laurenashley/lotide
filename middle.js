@@ -18,7 +18,7 @@ const eqArrays = (first, second) => {
 };
 
 const assertArraysEqual = (actual, expected) => {
-  const isMatch = (actual === expected) || eqArray(actual, expected);
+  const isMatch = (actual === expected) || eqArrays(actual, expected);
   const successMsg = `👍✅Assertion Passed: ${actual} === ${expected}`,
     failMsg = `👎❌Assertion Failed: ${actual} === ${expected}`;
   const message = isMatch ? successMsg : failMsg;
@@ -33,16 +33,23 @@ const middle = (array) => {
   if (array.length > 2) {
     // determine if length is even or odd
     const isEven = (array.length % 2 === 0);
-    // even: divide array into 2 equal parts
+    const half = Math.floor(array.length / 2);
+    
+
     if (isEven) {
-      // divide array into two equal parts
-      // push tail of first array
-      // push head of second array
+      // even: divide array into 2 equal parts
+      const firstHalf = array.slice(0, half);
+      const secondHalf = array.slice(half);
+      
+      // push tail of first array and head of second array to result
+      middleVals.push(firstHalf[firstHalf.length - 1], secondHalf[0]);
     } else {
-      // odd: divide by 2, use whole number as index for slice start, push the next item
+      // odd: divide by 2, use whole number as index for slice start
+      middleVals = array[half];
     }
-  } 
-  console.log(middleVals);
+  }
+  // console.log(middleVals);
+  return middleVals;
 };
 
 // Test Code
@@ -54,3 +61,6 @@ middle([1, 2, 3, 4, 5]); // => [3]
 
 middle([1, 2, 3, 4]); // => [2, 3]
 middle([1, 2, 3, 4, 5, 6]); // => [3, 4]
+
+assertArraysEqual(middle([1, 2, 3, 4, 5, 6]), [3, 4]); // pass
+assertArraysEqual(middle([1, 2, 3, 4]), [3]); // fail
