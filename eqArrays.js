@@ -1,6 +1,4 @@
 // eqArrays.js
-const assertEqual = require('./assertEqual');
-
 const eqArrays = (first, second) => {
   let counter = 0;
   let result;
@@ -20,7 +18,6 @@ const eqArrays = (first, second) => {
   }
 
   return result;
-  // console.log(result);
 };
 
 module.exports = eqArrays;
