@@ -1,31 +1,5 @@
-// TEST/ASSERTION FUNCTIONS
-const eqArrays = (first, second) => {
-  let counter = 0;
-  let isEqual;
-  if (first.length === second.length) {
-    while (counter < first.length) {
-      const isMatch = first[counter] === second[counter];
-      isEqual = isMatch ? true : false;
-      if (!isMatch) {
-        break; // Stops loop when match fails
-      }
-      counter++;
-    }
-  } else {
-    isEqual = false;
-  }
-  return isEqual;
-};
+const assertArraysEqual = require('./assertArraysEqual');
 
-const assertArraysEqual = (actual, expected) => {
-  const isMatch = (actual === expected) || eqArrays(actual, expected);
-  const successMsg = `👍✅Assertion Passed: ${actual} === ${expected}`,
-    failMsg = `👎❌Assertion Failed: ${actual} === ${expected}`;
-  const message = isMatch ? successMsg : failMsg;
-  console.log(message);
-};
-
-// ACTUAL FUNCTION
 const middle = (array) => {
   let middleVals = [];
 
@@ -35,7 +9,6 @@ const middle = (array) => {
     const isEven = (array.length % 2 === 0);
     const half = Math.floor(array.length / 2);
     
-
     if (isEven) {
       // even: divide array into 2 equal parts
       const firstHalf = array.slice(0, half);
@@ -52,15 +25,4 @@ const middle = (array) => {
   return middleVals;
 };
 
-// Test Code
-middle([1]); // => []
-middle([1, 2]); // => []
-
-middle([1, 2, 3]); // => [2]
-middle([1, 2, 3, 4, 5]); // => [3]
-
-middle([1, 2, 3, 4]); // => [2, 3]
-middle([1, 2, 3, 4, 5, 6]); // => [3, 4]
-
-assertArraysEqual(middle([1, 2, 3, 4, 5, 6]), [3, 4]); // pass
-assertArraysEqual(middle([1, 2, 3, 4]), [3]); // fail
+module.exports = middle;
