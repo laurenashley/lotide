@@ -1,3 +1,5 @@
+// letterPositions.js
+
 const letterPositions = function(sentence) {
   console.log('Input is: ', sentence);
 
@@ -8,7 +10,6 @@ const letterPositions = function(sentence) {
     const isLetter = thisLetter.match(/[a-z]/i);
 
     if (isLetter) {
-      console.log('hello');
       if (results[thisLetter]) {
         results[thisLetter].push(letter);
       } else {
@@ -20,4 +21,4 @@ const letterPositions = function(sentence) {
   return results;
 };
 
-console.log(letterPositions('Do not get upset about the results you don\'t get from the work you didn\'t do.'));
+module.exports = letterPositions;
