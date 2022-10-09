@@ -14,7 +14,7 @@ const result2 = tail(word);
 const empty = [];
 const result3 = tail(empty);
 
-describe("#head", () => {
+describe("#tail", () => {
   it("returns ['lighthouse', 'labs'] for result", () => {
     assert.deepEqual(result, ['lighthouse', 'labs']);
   });
