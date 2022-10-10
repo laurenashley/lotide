@@ -1,4 +1,5 @@
 // eqArrays.js
+
 const eqArrays = (first, second) => {
   let counter = 0;
   let result;
