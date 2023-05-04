@@ -1,24 +1,22 @@
 // eqArrays.js
 
 const eqArrays = (first, second) => {
-  let counter = 0;
-  let result;
-  if (first.length === second.length) {
-    while (counter < first.length) {
-      const isMatch = first[counter] === second[counter];
-
-      result = isMatch ? true : false;
-
-      if (!isMatch) {
-        break; // Stops loop when match fails
-      }
-      counter++;
-    }
-  } else {
-    result = false;
+  if (first.length !== second.length) {
+    return false;
   }
 
-  return result;
+  if (first.length === 0 && second.length === 0) {
+    return true;
+  }
+
+  const firstElement = first[0];
+  const secondElement = second[0];
+
+  if (firstElement !== secondElement) {
+    return false;
+  }
+
+  return eqArrays(first.slice(1), second.slice(1));
 };
 
 module.exports = eqArrays;
